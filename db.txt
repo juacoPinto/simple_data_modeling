@@ -1,0 +1,56 @@
+users
+------
+id int pk
+name str
+lastname str
+email str 
+age int
+password str 
+
+
+people
+------
+id int pk
+name str
+gender str
+birth_year int
+height int
+hair_color str
+eye_color str
+
+people_favorites
+------
+id int pk
+user_id int  FK - users.id
+people_id int FK >- people.id
+
+vehicles_favorites
+------
+id int pk
+user_id int  FK - users.id
+vehicles_id int FK >- vehicles.id
+
+planets_favorites
+------
+id int pk
+user_id int  FK - users.id
+planets_id int FK >- planets.id
+
+vehicles
+------
+id int pk
+name str
+model str
+length int
+crew_capacity int
+vehicle_class str
+
+planets
+------
+id int pk
+name str
+climate str
+terrain str
+population int
+gravity int
+orbital_period int

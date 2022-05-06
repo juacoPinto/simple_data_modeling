@@ -16,6 +16,9 @@ class Users(Base):
     email = Column(String(255), nullable=False)
     age = Column(Integer, nullable=False)
     password = Column(String(255), nullable=False)
+    people_favorites = relationship('People_favorites', backref="user")
+    vehicles_favorites = relationship('Vehicles_favorites', backref="user")
+    planets_favorites = relationship('Planets_favorites', backref="user")
 
 class People(Base):
     __tablename__ = "people"
@@ -32,6 +35,7 @@ class People_favorites(Base):
     id = Column(Integer, primary_key=True)
     user_id = Column(Integer,  ForeignKey('users.id'))  
     people_id = Column(Integer, ForeignKey('people.id')) 
+    people = relationship('People', backref='people_favorite')
 
 class Vehicles(Base):
     __tablename__ = 'vehicles'
@@ -47,6 +51,7 @@ class Vehicles_favorites(Base):
     id = Column(Integer, primary_key=True)
     user_id = Column(Integer,  ForeignKey('users.id'))
     vehicles_id = Column(Integer, ForeignKey('vehicles.id'))
+    vehicles = relationship('Vehicles', backref='vehicles_favorite')
 
 class Planets(Base):
     __tablename__ =  'planets'
@@ -62,7 +67,8 @@ class Planets_favorites(Base):
     __tablename__ = 'planets_favorites'
     id = Column(Integer, primary_key=True)
     user_id = Column(Integer, ForeignKey('users.id'))
-    vehicles_id = Column(Integer, ForeignKey('planets.id'))
+    planets_id = Column(Integer, ForeignKey('planets.id'))
+    planets = relationship('Planets', backref='planets_favorite')
 
 ## Examples
 # class Person(Base):
